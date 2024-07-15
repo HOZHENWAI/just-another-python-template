@@ -27,18 +27,20 @@ dev = {file = ["requirements-dev.txt"]}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+exclude = ["tests"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "-ra -q --cov src.${PACKAGE-NAME} --cov-report html"
+addopts = "-ra -q --cov ${PACKAGE-NAME} --cov-report html"
 testpaths = [
-    "tests",
+    "src/tests",
 ]
 required_plugins = [
     "pytest-cov",
     "pytest-assume",
     "pytest-mock"
 ]
+pythonpath = ["src"]
 
 [tool.coverage.report]
 exclude_lines = [
